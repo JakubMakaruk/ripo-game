@@ -5,4 +5,3 @@ kl_cz
 z_pa
 gr_szka
 na_ka
-mr_wka

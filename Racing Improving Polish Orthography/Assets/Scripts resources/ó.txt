@@ -2,3 +2,4 @@ og_rek
 c_rka
 str_j
 nastr_j
+mr_wka
