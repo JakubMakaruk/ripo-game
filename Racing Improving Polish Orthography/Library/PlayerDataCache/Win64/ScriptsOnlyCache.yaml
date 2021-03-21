@@ -255,7 +255,7 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
-      Hash: dc9c331be923eafe1d92b44b7c82ea47
+      Hash: 75716ebe8ee030c174f2d56a9b64bbb3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player

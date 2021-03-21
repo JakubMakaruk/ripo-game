@@ -2977,7 +2977,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New text
+  m_text: "S\u0142owo"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 330ba95d56df20e4a80895dfe0ca2672, type: 2}
   m_sharedMaterial: {fileID: -6843175535507896908, guid: 330ba95d56df20e4a80895dfe0ca2672,
@@ -3047,10 +3047,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 539546427}
-    characterCount: 8
+    characterCount: 5
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1

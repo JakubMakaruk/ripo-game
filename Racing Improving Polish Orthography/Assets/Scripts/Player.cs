@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         words_u = new Dictionary<string, int>();
         words_o = new Dictionary<string, int>();
 
-        words_u = File.ReadAllLines(filename_u).ToDictionary(x=>x, y=>0);
+        words_u = File.ReadAllLines(filename_u).ToDictionary(x => x, y => 0);
         words_o = File.ReadAllLines(filename_o).ToDictionary(x => x, y => 0);
 
 
@@ -69,42 +69,40 @@ public class Player : MonoBehaviour
     private IEnumerator OnCollisionWithObstacle(Collider other)
     {
         Debug.Log(other.gameObject.name);
-        if ((other.gameObject.layer == 10 && currentAnswer == 10) || (other.gameObject.layer == 11 && currentAnswer == 11))
+        if ((other.gameObject.layer == 10 && currentAnswer == 10) || (other.gameObject.layer == 11 && currentAnswer == 11)) // COLLISION AND GOOD ANSWER
         {
             Debug.Log("Dobra odpowiedź!");
             Destroy(other.gameObject);
 
             textObject.color = greenColor;
-            textObject.text = "Dobrze!";
+            //textObject.text = "Dobrze!";
+            textObject.SetText("Dobrze!");
             correctCounter++;
             correctAnswersCounter.text = correctCounter.ToString();
 
             DestroySpawnLetter(counterAll);
 
             SetWordAsAppeared(currentWord);
-
-            yield return new WaitForSeconds(2);
-            GenerateNewWord();
         }
-        else if (other.gameObject.layer == 10 || other.gameObject.layer == 11)
+        else if (other.gameObject.layer == 10 || other.gameObject.layer == 11) // COLLISION BUT WRONG ANSWER
         {
             Debug.Log("Zła odpowiedź!");
             Destroy(other.gameObject);
 
             textObject.color = redColor;
-            textObject.text = "Źle!";
+            //textObject.text = "Źle!";
+            textObject.SetText("Źle!");
             wrongCounter++;
             wrongAnswersCounter.text = wrongCounter.ToString();
 
             DestroySpawnLetter(counterAll);
-
-            yield return new WaitForSeconds(2);
-            GenerateNewWord();
         }
+        yield return new WaitForSeconds(2);
+        GenerateNewWord();
         Debug.Log("-------------------------");
     }
 
-    private void GenerateNewWord()
+    void GenerateNewWord()
     {
         int appear = -1;
         string word = "";
@@ -128,7 +126,8 @@ public class Player : MonoBehaviour
             Debug.Log(word + " " + appear.ToString());
         } while (appear != 0);
 
-        textObject.text = currentWord = word;
+        textObject.SetText(word);
+        currentWord = word;
         counterAll++;
         textObject.color = yellowColor;
     }
