@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 609, y: 392}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 1
-  controlID: 3576
+  controlID: 1006
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -47,7 +47,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 19
-    width: 1191
+    width: 1287
     height: 926
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewsNames: []
@@ -91,23 +91,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1191
+      width: 1287
       height: 905
-    m_Scale: {x: 0.6203125, y: 0.6203125}
-    m_Translation: {x: 595.5, y: 452.5}
+    m_Scale: {x: 0.6703125, y: 0.6703125}
+    m_Translation: {x: 643.49994, y: 452.49997}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -960
-      y: -729.471
-      width: 1920
-      height: 1458.942
+      x: -959.9999
+      y: -675.0582
+      width: 1919.9999
+      height: 1350.1165
     m_MinimalGUI: 1
-  m_defaultScale: 0.6203125
-  m_LastWindowPixelSize: {x: 1191, y: 926}
+  m_defaultScale: 0.6703125
+  m_LastWindowPixelSize: {x: 1287, y: 926}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_MinSize: {x: 609, y: 392}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 3577
+  controlID: 1007
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_MinSize: {x: 333, y: 392}
   m_MaxSize: {x: 14003, y: 14042}
   vertical: 0
-  controlID: 3532
+  controlID: 962
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -275,9 +275,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.24872258, y: 0.48846814, z: -0.1475755, w: 0.8232691}
+    m_Target: {x: 0.29375908, y: 0.49105996, z: -0.18031123, w: 0.80004483}
     speed: 2
-    m_Value: {x: 0.24872078, y: 0.4884646, z: -0.14757442, w: 0.82326317}
+    m_Value: {x: 0.29375643, y: 0.49105552, z: -0.1803096, w: 0.80003756}
   m_Size:
     m_Target: 826.9205
     speed: 2
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 392}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 3533
+  controlID: 963
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52

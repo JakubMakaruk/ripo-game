@@ -28,29 +28,24 @@ public class Player : MonoBehaviour
     private int counterAll = 0, correctCounter = 0, wrongCounter = 0;
     private int randomValue;
 
-    //private string[] words_u;
-    //private string[] words_o;
-    private List<string> words_appeared;
+    private Dictionary<string, int> words_u;
+    private Dictionary<string, int> words_o;
 
-    private List<string> _words_u;
-    private List<string> _words_o;
+    System.Random random = new System.Random();
 
     void Start()
     {
-        words_appeared = new List<string>();
-        _words_u = new List<string>();
-        _words_o = new List<string>();
+        words_u = new Dictionary<string, int>();
+        words_o = new Dictionary<string, int>();
 
-        //words_u = File.ReadAllLines(filename_u);
-        //words_o = File.ReadAllLines(filename_o);
+        words_u = File.ReadAllLines(filename_u).ToDictionary(x=>x, y=>0);
+        words_o = File.ReadAllLines(filename_o).ToDictionary(x => x, y => 0);
 
-        _words_u = File.ReadAllLines(filename_u).ToList<string>();
-        _words_o = File.ReadAllLines(filename_o).ToList<string>();
 
-        /*for (int i = 0; i < words_u.Length; i++)
+        foreach (KeyValuePair<string, int> item in words_u)
         {
-            Debug.Log(words_u[i]);
-        }*/
+            Debug.Log(item.Key + " " + item.Value.ToString());
+        }
 
         correctAnswersCounter.text = "0";
         wrongAnswersCounter.text = "0";
@@ -86,7 +81,7 @@ public class Player : MonoBehaviour
 
             DestroySpawnLetter(counterAll);
 
-            RemoveWordFromList(currentWord, randomValue, currentAnswer);
+            SetWordAsAppeared(currentWord);
 
             yield return new WaitForSeconds(2);
             GenerateNewWord();
@@ -106,49 +101,56 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(2);
             GenerateNewWord();
         }
+        Debug.Log("-------------------------");
     }
 
     private void GenerateNewWord()
     {
-        System.Random random = new System.Random();
-        int randomStartValue = random.Next(0, 2);
-        Debug.Log("Random start " + randomStartValue.ToString());
-        if (randomStartValue == 0)
+        int appear = -1;
+        string word = "";
+        do
         {
-            randomValue = random.Next(0, _words_u.Count);
-            textObject.text = currentWord = _words_u[randomValue];
-            currentAnswer = 10;
-        }
-        else
-        {
-            randomValue = random.Next(0, _words_o.Count);
-            textObject.text = currentWord = _words_o[randomValue];
-            currentAnswer = 11;
-        }
-            
+            int randomStartValue = random.Next(0, 2);
+            if (randomStartValue == 0)
+            {
+                randomValue = random.Next(0, words_u.Count);
+                word = words_u.ElementAt(randomValue).Key;
+                appear = words_u.ElementAt(randomValue).Value;
+                currentAnswer = 10;
+            }
+            else
+            {
+                randomValue = random.Next(0, words_o.Count);
+                word = words_o.ElementAt(randomValue).Key;
+                appear = words_o.ElementAt(randomValue).Value;
+                currentAnswer = 11;
+            }
+            Debug.Log(word + " " + appear.ToString());
+        } while (appear != 0);
+
+        textObject.text = currentWord = word;
         counterAll++;
         textObject.color = yellowColor;
     }
 
     private void DestroySpawnLetter(int index)
     {
-        Debug.Log("SIEMA +" + index.ToString());
         Destroy(spawnersLetters[index-1].gameObject);
     }
 
-    private void RemoveWordFromList(string word, int index, int letter)
+    private void SetWordAsAppeared(string word)
     {
-        switch (letter)
+        switch (currentAnswer)
         {
             case 10:
-                Debug.Log(_words_u.Count.ToString() + "\n" + index.ToString() + " " + word);
-                _words_u.RemoveAt(index);
-                Debug.Log("USUNIĘTO!");
+                Debug.Log("USTAWIAM: " + word + " " + words_u[word].ToString());
+                this.words_u[word] = 1;
+                Debug.Log(word + " " + words_u[word].ToString());
                 break;
             case 11:
-                Debug.Log(_words_o.Count.ToString() + "\n" + index.ToString() + " " + word);
-                _words_o.RemoveAt(index);
-                Debug.Log("USUNIĘTO!");
+                Debug.Log("USTAWIAM: " + word + " " + words_o[word].ToString());
+                this.words_o[word] = 1;
+                Debug.Log(word + " " + words_o[word].ToString());
                 break;
         }
     }
