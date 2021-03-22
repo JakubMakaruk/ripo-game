@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - GameManager
     - InputController
     - Player
+    - Timer
     - Wheel
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -104,6 +105,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12958}
     - Class: 114
       Script: {instanceID: 12964}
+    - Class: 114
+      Script: {instanceID: 15002}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -589,6 +592,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: ec9985d7935a3df06f5231fc8a0ed710
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Timer
   platform: 19
   scenePathNames:
   - Assets/Scenes/Game.unity
