@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-        //minutes = seconds = miliseconds = 0;
+
     }
 
     // Update is called once per frame

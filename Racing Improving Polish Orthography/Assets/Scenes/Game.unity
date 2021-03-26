@@ -3146,11 +3146,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 548792952}
   m_Material: {fileID: 13400000, guid: cac0875a5c861e14ca2fdccaa09662ac, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.64
-  m_Height: 1.93
+  m_Enabled: 1
+  m_Radius: 0.56
+  m_Height: 0.5
   m_Direction: 2
-  m_Center: {x: -0, y: 0.37, z: 0}
+  m_Center: {x: -0, y: 0.54, z: -0.4}
 --- !u!1001 &557660412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5281,6 +5281,65 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &924192015
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 924192017}
+  - component: {fileID: 924192016}
+  - component: {fileID: 924192018}
+  m_Layer: 0
+  m_Name: Checkpoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &924192016
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924192015}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 574.69006, y: 1, z: 574.6667}
+  m_Center: {x: 27.99115, y: -83.87, z: -217.33334}
+--- !u!4 &924192017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924192015}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1175.5, y: 45, z: -389.4796}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1180526913}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &924192018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924192015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c402f33d992d145ba4fccd7c5910ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 8296172669450350696}
 --- !u!1 &937009908
 GameObject:
   m_ObjectHideFlags: 0
@@ -6777,6 +6836,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175977537}
   m_CullTransparentMesh: 0
+--- !u!1 &1180526912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1180526913}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1180526913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180526912}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 13.4, y: -41.84, z: 108.87}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 924192017}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1204271467 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: c2c7ef20c3f71b541a88890af9bcc124,
@@ -10579,8 +10668,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Niepoprawne: '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 330ba95d56df20e4a80895dfe0ca2672, type: 2}
-  m_sharedMaterial: {fileID: -6843175535507896908, guid: 330ba95d56df20e4a80895dfe0ca2672,
+  m_fontAsset: {fileID: 11400000, guid: a0358b6d1b5398e4cb2e00e9e52e24c6, type: 2}
+  m_sharedMaterial: {fileID: -6110646313827344394, guid: a0358b6d1b5398e4cb2e00e9e52e24c6,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11489,8 +11578,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Poprawne: '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 330ba95d56df20e4a80895dfe0ca2672, type: 2}
-  m_sharedMaterial: {fileID: -6843175535507896908, guid: 330ba95d56df20e4a80895dfe0ca2672,
+  m_fontAsset: {fileID: 11400000, guid: a0358b6d1b5398e4cb2e00e9e52e24c6, type: 2}
+  m_sharedMaterial: {fileID: -6110646313827344394, guid: a0358b6d1b5398e4cb2e00e9e52e24c6,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -12471,7 +12560,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8296172669450350696}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 106820194}
@@ -12891,7 +12980,7 @@ GameObject:
   - component: {fileID: 7718390323392204010}
   - component: {fileID: 2097802546}
   m_Layer: 0
-  m_Name: rzorz2
+  m_Name: Trace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12967,7 +13056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerOfMass: {fileID: 2021698934}
-  motorTorque: 1100
+  motorTorque: 1200
   maxSteer: 20
   handbrakeValue: 4000
 --- !u!114 &8296172669450350699
