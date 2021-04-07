@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - CameraFollow
     - CameraFollow2
     - Car
+    - Checkpoint
     - GameManager
     - InputController
     - Player
@@ -82,31 +83,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 11758}
+      Script: {instanceID: 11650}
     - Class: 114
-      Script: {instanceID: 11784}
+      Script: {instanceID: 11760}
     - Class: 114
-      Script: {instanceID: 11866}
+      Script: {instanceID: 11786}
     - Class: 114
-      Script: {instanceID: 11920}
+      Script: {instanceID: 11868}
     - Class: 114
-      Script: {instanceID: 11948}
+      Script: {instanceID: 11922}
     - Class: 114
-      Script: {instanceID: 12358}
+      Script: {instanceID: 11950}
     - Class: 114
-      Script: {instanceID: 12372}
+      Script: {instanceID: 12356}
     - Class: 114
-      Script: {instanceID: 12552}
+      Script: {instanceID: 12362}
     - Class: 114
-      Script: {instanceID: 12614}
+      Script: {instanceID: 12376}
     - Class: 114
-      Script: {instanceID: 12760}
+      Script: {instanceID: 12556}
     - Class: 114
-      Script: {instanceID: 12958}
+      Script: {instanceID: 12618}
     - Class: 114
-      Script: {instanceID: 12964}
+      Script: {instanceID: 12764}
     - Class: 114
-      Script: {instanceID: 15002}
+      Script: {instanceID: 12962}
+    - Class: 114
+      Script: {instanceID: 12968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -294,6 +297,12 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: d8c8ca28454c2b82a37edfb3164b5ff5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Checkpoint
+  - hash:
+      serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -418,6 +427,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalReceiver
+  - hash:
+      serializedVersion: 2
+      Hash: ec9985d7935a3df06f5231fc8a0ed710
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Timer
   - hash:
       serializedVersion: 2
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
@@ -592,12 +607,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: ec9985d7935a3df06f5231fc8a0ed710
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Timer
   platform: 19
   scenePathNames:
   - Assets/Scenes/Game.unity
