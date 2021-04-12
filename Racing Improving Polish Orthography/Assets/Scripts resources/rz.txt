@@ -4,7 +4,6 @@ p_epraszam
 pot_eba
 b_oza
 dob_e
-g_ebień
 k_ak
 g_ywka
 sk_ydło

@@ -8,9 +8,11 @@ public class InputController : MonoBehaviour
     public string inputDriveAxis = "Vertical";
     public string inputHandbrake = "space";
 
-    public float SteerInput { get; private set; }
-    public float DriveInput { get; private set; }
-    public bool HandbrakeInput { get; private set; }
+    public bool canInput = true;
+
+    public float SteerInput { get; set; }
+    public float DriveInput { get; set; }
+    public bool HandbrakeInput { get; set; }
 
     void Start()
     {
@@ -19,8 +21,15 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
-        SteerInput = Input.GetAxis(inputSteerAxis);
-        DriveInput = Input.GetAxis(inputDriveAxis);
-        HandbrakeInput = Input.GetKey(inputHandbrake);
+        if(canInput)
+        {
+            SteerInput = Input.GetAxis(inputSteerAxis);
+            DriveInput = Input.GetAxis(inputDriveAxis);
+            HandbrakeInput = Input.GetKey(inputHandbrake);
+        }
+        else
+        {
+            return;
+        }
     }
 }

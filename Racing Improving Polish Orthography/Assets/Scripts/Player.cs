@@ -20,7 +20,12 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI wrongAnswersCounter;
     public TextMeshProUGUI correctAnswersCounter;
     public GameObject[] spawnersLetters;
+
     public GameObject endScreen;
+    public TextMeshProUGUI[] endWrongWords;
+    public TextMeshProUGUI endScore;
+    public TextMeshProUGUI endTimer;
+    public TextMeshProUGUI endTime;
 
     private Color yellowColor = new Color32(223, 221, 37, 255);
     private Color greenColor = new Color32(86, 229, 25, 255);
@@ -36,9 +41,13 @@ public class Player : MonoBehaviour
 
     private Dictionary<string, int> words_1;
     private Dictionary<string, int> words_2;
-    private List<string> wrongAsweredWords;
+    //private List<string> wrongAsweredWords;
     //private String[] words_u;
     //private String[] words_o;
+
+    private int counterWrongWords=0;
+    private int indexWrongWords=0;
+    private string[] wrong_words;
 
     private string CurrentScene;
 
@@ -46,10 +55,15 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        endScreen.gameObject.SetActive(false);
+
         words_1 = new Dictionary<string, int>();
         words_2 = new Dictionary<string, int>();
+        wrong_words = new string[3];
+        for (int i = 0; i < 3; i++)
+            wrong_words[i] = "";
 
-        wrongAsweredWords = new List<string>();
+        //wrongAsweredWords = new List<string>();
 
         CurrentScene = SceneManager.GetActiveScene().name;
 
@@ -88,19 +102,19 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name + " | " + other.gameObject.layer + ".............." + currentWord + " | " + currentAnswer.ToString());
         if (other.gameObject.layer == 10 || other.gameObject.layer == 11 || other.gameObject.layer == 12 || other.gameObject.layer == 13)
         {
             StartCoroutine(OnCollisionWithObstacle(other));
-            Debug.Log(counterAll);
         }
         else if(other.gameObject.layer == 9)
         {
-            textObject.gameObject.SetActive(false);
-            wrongAnswersCounter.gameObject.SetActive(false);
-            correctAnswersCounter.gameObject.SetActive(false);
-
-            endScreen.gameObject.SetActive(true);
+            EndGame();
+            GameManager.Instance.InputController.DriveInput = 0f;
+            GameManager.Instance.InputController.SteerInput = 0f;
+            GameManager.Instance.InputController.HandbrakeInput = true;
+            GameManager.Instance.InputController.canInput = false;
+            //GameManager.Instance.InputController.inputDriveAxis = "";
+            //GameManager.Instance.InputController.inputSteerAxis = "";
         }
         
     }
@@ -131,7 +145,23 @@ public class Player : MonoBehaviour
 
             DestroySpawnerLetter(counterAll);
 
-            wrongAsweredWords.Add(currentWord);
+            Debug.Log("PRZED: " + wrong_words[indexWrongWords]);
+            wrong_words[indexWrongWords] = wrong_words[indexWrongWords] + currentWord + "\n";
+            Debug.Log("PO" + wrong_words[indexWrongWords]);
+            counterWrongWords++;
+            if (counterWrongWords >= 4)
+            {
+                counterWrongWords = 0;
+                indexWrongWords++;
+            }
+            //wrongAsweredWords.Add(currentWord);
+
+            //Debug.Log("--------------\nLISTA:\n");
+            //foreach(string i in wrongAsweredWords)
+            //{
+            //    Debug.Log(i);
+            //}
+            //Debug.Log("DŁUGOŚĆ: " + wrongAsweredWords.Count);
         }
         yield return new WaitForSeconds(2);
         GenerateNewWord();
@@ -202,5 +232,38 @@ public class Player : MonoBehaviour
         {
             words_2[word] = 1;
         }
+    }
+
+    private void EndGame()
+    {
+        textObject.gameObject.SetActive(false);
+        wrongAnswersCounter.gameObject.SetActive(false);
+        correctAnswersCounter.gameObject.SetActive(false);
+        endTimer.gameObject.SetActive(false);
+
+        endScreen.gameObject.SetActive(true);
+
+        string score = correctCounter.ToString() + "/" + (correctCounter + wrongCounter).ToString();
+        endScore.SetText(score);
+
+        endTime.SetText(endTimer.text);
+
+        for (int i = 0; i < 3; i++)
+            endWrongWords[i].SetText(wrong_words[i]);
+
+        /*for (int x = 0; x < endWrongWords.Length; x++)
+        {
+            string s = "";
+            int rows = 0;
+            while (wrongAsweredWords.Count > 0)
+            {
+                s = s + wrongAsweredWords.First() + "\n";
+                wrongAsweredWords.RemoveAt(0);
+                rows++;
+                if (rows >= 4)
+                    break;
+            }
+            endWrongWords[x].SetText(s);
+        }*/
     }
 }
