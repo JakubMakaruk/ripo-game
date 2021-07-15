@@ -15,11 +15,21 @@ public class Player : MonoBehaviour
     private string filename_o = "Assets/Scripts resources/ó.txt";
     private string filename_rz = "Assets/Scripts resources/rz.txt";
     private string filename_z = "Assets/Scripts resources/ż.txt";
+    private string filename_ci = "Assets/Scripts resources/ci.txt";
+    private string filename_c = "Assets/Scripts resources/ć.txt";
+    private string filename_s = "Assets/Scripts resources/ś.txt";
+    private string filename_si = "Assets/Scripts resources/si.txt";
+    private string filename_x = "Assets/Scripts resources/ź.txt";
+    private string filename_zi = "Assets/Scripts resources/zi.txt";
+    private string filename_ch = "Assets/Scripts resources/ch.txt";
+    private string filename_h = "Assets/Scripts resources/h.txt";
 
     public TextMeshProUGUI textObject;
     public TextMeshProUGUI wrongAnswersCounter;
     public TextMeshProUGUI correctAnswersCounter;
     public GameObject[] spawnersLetters;
+
+    public GameObject[] textLetters;
 
     public GameObject endScreen;
     public TextMeshProUGUI[] endWrongWords;
@@ -31,9 +41,8 @@ public class Player : MonoBehaviour
     private Color greenColor = new Color32(86, 229, 25, 255);
     private Color redColor = new Color32(229, 26, 30, 255);
 
-    private int currentAnswer; // 10 - U , 11 - Ó , 12 - RZ, 13 - Z
+    private int currentAnswer; // 10 - U , 11 - Ó , 12 - RZ, 13 - Z, 14 - CI, 15 - Ć, 16 - Ś, 17 - SI, 18 - CH, 19 - H, 20 - Ź, 21 - ZI
     private int possibleAnswer1, possibleAnswer2;
-    private int counterWords;
     private string currentWord;
     private int randomStartValue; // 0 - words_1 , 1 - words_2
     private int counterAll = 0, correctCounter = 0, wrongCounter = 0;
@@ -41,15 +50,11 @@ public class Player : MonoBehaviour
 
     private Dictionary<string, int> words_1;
     private Dictionary<string, int> words_2;
-    //private List<string> wrongAsweredWords;
-    //private String[] words_u;
-    //private String[] words_o;
 
     private int counterWrongWords=0;
     private int indexWrongWords=0;
     private string[] wrong_words;
-
-    private string CurrentScene;
+    private int columns_wrong_words = 3;
 
     System.Random random = new System.Random();
 
@@ -57,38 +62,67 @@ public class Player : MonoBehaviour
     {
         endScreen.gameObject.SetActive(false);
 
-        words_1 = new Dictionary<string, int>();
-        words_2 = new Dictionary<string, int>();
-        wrong_words = new string[3];
-        for (int i = 0; i < 3; i++)
+        words_1 = words_2 = new Dictionary<string, int>();
+        wrong_words = new string[columns_wrong_words];
+        for (int i = 0; i < columns_wrong_words; i++)
             wrong_words[i] = "";
 
-        //wrongAsweredWords = new List<string>();
 
-        CurrentScene = SceneManager.GetActiveScene().name;
-
-        switch(CurrentScene)
+        switch(GameManager.level)
         {
             case "UorO":
                 words_1 = File.ReadAllLines(filename_u).ToDictionary(x => x, y => 0);
                 words_2 = File.ReadAllLines(filename_o).ToDictionary(x => x, y => 0);
                 possibleAnswer1 = 10;
                 possibleAnswer2 = 11;
+
+                GenerateSpawners(possibleAnswer1, possibleAnswer2, 0, 1);
+
                 break;
             case "RZorZ":
                 words_1 = File.ReadAllLines(filename_rz).ToDictionary(x => x, y => 0);
                 words_2 = File.ReadAllLines(filename_z).ToDictionary(x => x, y => 0);
                 possibleAnswer1 = 12;
                 possibleAnswer2 = 13;
+
+                GenerateSpawners(possibleAnswer1, possibleAnswer2, 2, 3);
+
+                break;
+            case "CorCI":
+                words_1 = File.ReadAllLines(filename_c).ToDictionary(x => x, y => 0);
+                words_2 = File.ReadAllLines(filename_ci).ToDictionary(x => x, y => 0);
+                possibleAnswer1 = 14;
+                possibleAnswer2 = 15;
+
+                GenerateSpawners(possibleAnswer1, possibleAnswer2, 4, 5);
+
+                break;
+            case "SorSI":
+                words_1 = File.ReadAllLines(filename_s).ToDictionary(x => x, y => 0);
+                words_2 = File.ReadAllLines(filename_si).ToDictionary(x => x, y => 0);
+                possibleAnswer1 = 16;
+                possibleAnswer2 = 17;
+
+                GenerateSpawners(possibleAnswer1, possibleAnswer2, 6, 7);
+                break;
+            case "CHorH":
+                words_1 = File.ReadAllLines(filename_ch).ToDictionary(x => x, y => 0);
+                words_2 = File.ReadAllLines(filename_h).ToDictionary(x => x, y => 0);
+                possibleAnswer1 = 18;
+                possibleAnswer2 = 19;
+
+                GenerateSpawners(possibleAnswer1, possibleAnswer2, 8, 9);
+                break;
+            case "ZorZI":
+                words_1 = File.ReadAllLines(filename_x).ToDictionary(x => x, y => 0);
+                words_2 = File.ReadAllLines(filename_zi).ToDictionary(x => x, y => 0);
+                possibleAnswer1 = 20;
+                possibleAnswer2 = 21;
+
+                GenerateSpawners(possibleAnswer1, possibleAnswer2, 10, 11);
                 break;
         }
-
-        Debug.Log(CurrentScene);
         
-
-        //words_u = File.ReadAllLines(filename_u);
-        //words_o = File.ReadAllLines(filename_o);
-
         correctAnswersCounter.text = "0";
         wrongAnswersCounter.text = "0";
 
@@ -100,23 +134,39 @@ public class Player : MonoBehaviour
 
     }
 
+    private void GenerateSpawners(int layer1, int layer2, int letter1, int letter2)
+    {
+        for(int i=0; i<spawnersLetters.Length; i++)
+        {
+            GameObject ans1 = Instantiate(textLetters[letter1], 
+                spawnersLetters[i].gameObject.transform.Find("First").transform.position, 
+                spawnersLetters[i].gameObject.transform.Find("First").transform.rotation,
+                spawnersLetters[i].transform);
+            ans1.transform.localScale = spawnersLetters[i].gameObject.transform.Find("First").transform.localScale;
+            spawnersLetters[i].gameObject.transform.Find("First").gameObject.layer = layer1;
+
+            GameObject ans2 = Instantiate(textLetters[letter2],
+                spawnersLetters[i].gameObject.transform.Find("Second").transform.position,
+                spawnersLetters[i].gameObject.transform.Find("Second").transform.rotation,
+                spawnersLetters[i].transform);
+            ans2.transform.localScale = spawnersLetters[i].gameObject.transform.Find("Second").transform.localScale;
+            spawnersLetters[i].gameObject.transform.Find("Second").gameObject.layer = layer2;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 10 || other.gameObject.layer == 11 || other.gameObject.layer == 12 || other.gameObject.layer == 13)
+        if (other.gameObject.layer == 10 || other.gameObject.layer == 11 || other.gameObject.layer == 12 || other.gameObject.layer == 13 || other.gameObject.layer == 14 || other.gameObject.layer == 15 || other.gameObject.layer == 16 || other.gameObject.layer == 17 || other.gameObject.layer == 18 || other.gameObject.layer == 19 || other.gameObject.layer == 20 || other.gameObject.layer == 21)
         {
             StartCoroutine(OnCollisionWithObstacle(other));
         }
         else if(other.gameObject.layer == 9)
         {
             EndGame();
-            GameManager.Instance.InputController.DriveInput = 0f;
-            GameManager.Instance.InputController.SteerInput = 0f;
+            GameManager.Instance.InputController.DriveInput = GameManager.Instance.InputController.SteerInput = 0f;
             GameManager.Instance.InputController.HandbrakeInput = true;
             GameManager.Instance.InputController.canInput = false;
-            //GameManager.Instance.InputController.inputDriveAxis = "";
-            //GameManager.Instance.InputController.inputSteerAxis = "";
         }
-        
     }
 
     private IEnumerator OnCollisionWithObstacle(Collider other)
@@ -134,7 +184,7 @@ public class Player : MonoBehaviour
 
             SetWordAsAppeared(currentWord);
         }
-        else if (other.gameObject.layer == possibleAnswer1 || other.gameObject.layer == possibleAnswer2) // COLLISION BUT WRONG ANSWER
+        else if (other.gameObject.layer == possibleAnswer1 || other.gameObject.layer == possibleAnswer2) // COLLISION AND WRONG ANSWER
         {
             Destroy(other.gameObject);
 
@@ -145,29 +195,19 @@ public class Player : MonoBehaviour
 
             DestroySpawnerLetter(counterAll);
 
-            Debug.Log("PRZED: " + wrong_words[indexWrongWords]);
             wrong_words[indexWrongWords] = wrong_words[indexWrongWords] + currentWord + "\n";
-            Debug.Log("PO" + wrong_words[indexWrongWords]);
             counterWrongWords++;
             if (counterWrongWords >= 4)
             {
                 counterWrongWords = 0;
                 indexWrongWords++;
             }
-            //wrongAsweredWords.Add(currentWord);
-
-            //Debug.Log("--------------\nLISTA:\n");
-            //foreach(string i in wrongAsweredWords)
-            //{
-            //    Debug.Log(i);
-            //}
-            //Debug.Log("DŁUGOŚĆ: " + wrongAsweredWords.Count);
         }
         yield return new WaitForSeconds(2);
         GenerateNewWord();
     }
 
-    void GenerateNewWord() // for dictionary words
+    void GenerateNewWord()
     {
         int appear = -1;
         string word = "";
@@ -196,27 +236,6 @@ public class Player : MonoBehaviour
         counterAll++;
     }
 
-    /*void GenerateNewWord() // for array words
-    {
-        System.Random random = new System.Random();
-        int randomStartValue = random.Next(0, 2);
-        Debug.Log("Random start " + randomStartValue.ToString());
-        if (randomStartValue == 0)
-        {
-            int randomValue = random.Next(0, words_u.Length);
-            textObject.text = currentWord = words_u[randomValue];
-            currentAnswer = 10;
-        }
-        else
-        {
-            int randomValue = random.Next(0, words_o.Length);
-            textObject.text = currentWord = words_o[randomValue];
-            currentAnswer = 11;
-        }
-        counterAll++;
-        textObject.color = yellowColor;
-    }*/
-
     private void DestroySpawnerLetter(int index)
     {
         Destroy(spawnersLetters[index-1].gameObject);
@@ -241,6 +260,7 @@ public class Player : MonoBehaviour
         correctAnswersCounter.gameObject.SetActive(false);
         endTimer.gameObject.SetActive(false);
 
+
         endScreen.gameObject.SetActive(true);
 
         string score = correctCounter.ToString() + "/" + (correctCounter + wrongCounter).ToString();
@@ -248,22 +268,7 @@ public class Player : MonoBehaviour
 
         endTime.SetText(endTimer.text);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < columns_wrong_words; i++)
             endWrongWords[i].SetText(wrong_words[i]);
-
-        /*for (int x = 0; x < endWrongWords.Length; x++)
-        {
-            string s = "";
-            int rows = 0;
-            while (wrongAsweredWords.Count > 0)
-            {
-                s = s + wrongAsweredWords.First() + "\n";
-                wrongAsweredWords.RemoveAt(0);
-                rows++;
-                if (rows >= 4)
-                    break;
-            }
-            endWrongWords[x].SetText(s);
-        }*/
     }
 }

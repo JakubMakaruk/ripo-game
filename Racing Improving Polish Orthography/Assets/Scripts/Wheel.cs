@@ -6,7 +6,6 @@ using UnityEngine.XR;
 public class Wheel : MonoBehaviour
 {
     public bool steer;
-    public bool invertSteer;
     public bool power;
     public bool handbrake;
 
@@ -23,27 +22,16 @@ public class Wheel : MonoBehaviour
         wheelTransform = GetComponentInChildren<MeshRenderer>().GetComponent<Transform>();
     }
 
-    void Update()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
         wheelCollider.GetWorldPose(out Vector3 pos, out Quaternion rot);
         wheelTransform.position = pos;
         wheelTransform.rotation = rot;
         if (steer)
-        {
-            wheelCollider.steerAngle = SteerAngle * (invertSteer ? -1 : 1);
-        }
+            wheelCollider.steerAngle = SteerAngle;
         if (power)
-        {
             wheelCollider.motorTorque = Torque;
-        }
         if (handbrake)
-        {
             wheelCollider.brakeTorque = Handbrake;
-        }
     }
 }

@@ -27,9 +27,7 @@ public class InputController : MonoBehaviour
             DriveInput = Input.GetAxis(inputDriveAxis);
             HandbrakeInput = Input.GetKey(inputHandbrake);
         }
-        else
-        {
-            return;
-        }
     }
 }
+
+

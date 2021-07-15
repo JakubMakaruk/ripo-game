@@ -3,31 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI textTimer;
 
-    private int minutes, seconds, miliseconds;
+    public int minutes, seconds, miliseconds;
 
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        DisplayTime();
+        if (SceneManager.GetActiveScene().name == "Map1" || SceneManager.GetActiveScene().name == "Map2" || SceneManager.GetActiveScene().name == "Map3")
+        {
+            DisplayTime();
+        }
     }
 
     void DisplayTime()
     {
-        minutes = (int)(Time.time / 60f);
-        seconds = (int)(Time.time % 60f);
-        miliseconds = (int)(Time.time * 100f)%100;
-        //miliseconds = (int)(Time.time / 3600000.0f);
-        textTimer.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");//string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, miliseconds);
-        //Debug.Log(minutes.ToString() + ":" + seconds.ToString() + ":" + miliseconds.ToString());
+        minutes = (int)(Time.timeSinceLevelLoad / 60f);
+        seconds = (int)(Time.timeSinceLevelLoad % 60f);
+        miliseconds = (int)(Time.timeSinceLevelLoad * 100f)%100;
+        textTimer.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
     }
 }
