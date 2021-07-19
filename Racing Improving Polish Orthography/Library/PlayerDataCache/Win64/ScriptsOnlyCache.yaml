@@ -78,7 +78,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12618}
     - Class: 114
-      Script: {instanceID: 12970}
+      Script: {instanceID: 12968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -133,7 +133,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12618}
     - Class: 114
-      Script: {instanceID: 12970}
+      Script: {instanceID: 12968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -190,7 +190,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12618}
     - Class: 114
-      Script: {instanceID: 12970}
+      Script: {instanceID: 12968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -253,9 +253,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12618}
     - Class: 114
-      Script: {instanceID: 12766}
+      Script: {instanceID: 12764}
     - Class: 114
-      Script: {instanceID: 12970}
+      Script: {instanceID: 12968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -340,11 +340,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12618}
     - Class: 114
-      Script: {instanceID: 12964}
+      Script: {instanceID: 12962}
     - Class: 114
-      Script: {instanceID: 12970}
-    - Class: 114
-      Script: {instanceID: 20384}
+      Script: {instanceID: 12968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -437,11 +435,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12618}
     - Class: 114
-      Script: {instanceID: 12964}
+      Script: {instanceID: 12962}
     - Class: 114
-      Script: {instanceID: 12970}
-    - Class: 114
-      Script: {instanceID: 20384}
+      Script: {instanceID: 12968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -534,11 +530,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12618}
     - Class: 114
-      Script: {instanceID: 12964}
+      Script: {instanceID: 12962}
     - Class: 114
-      Script: {instanceID: 12970}
-    - Class: 114
-      Script: {instanceID: 20384}
+      Script: {instanceID: 12968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1047,4 +1041,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Map1.unity
   - Assets/Scenes/Map2.unity
   - Assets/Scenes/Map3.unity
-  playerPath: C:/Users/Jakub/Desktop/gra licencjat/Educational Game.exe
+  playerPath: C:/Users/Jakub/Desktop/RIPO Game/Educational Game.exe

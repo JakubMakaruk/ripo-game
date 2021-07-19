@@ -24,6 +24,9 @@ public class Player : MonoBehaviour
     private string filename_ch = "Assets/Scripts resources/ch.txt";
     private string filename_h = "Assets/Scripts resources/h.txt";
 
+    private int minNumLayer = 10;
+    private int maxNumLayer = 21;
+
     public TextMeshProUGUI textObject;
     public TextMeshProUGUI wrongAnswersCounter;
     public TextMeshProUGUI correctAnswersCounter;
@@ -156,11 +159,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 10 || other.gameObject.layer == 11 || other.gameObject.layer == 12 || other.gameObject.layer == 13 || other.gameObject.layer == 14 || other.gameObject.layer == 15 || other.gameObject.layer == 16 || other.gameObject.layer == 17 || other.gameObject.layer == 18 || other.gameObject.layer == 19 || other.gameObject.layer == 20 || other.gameObject.layer == 21)
+        if (other.gameObject.layer >= minNumLayer && other.gameObject.layer <= maxNumLayer) // letters
         {
             StartCoroutine(OnCollisionWithObstacle(other));
         }
-        else if(other.gameObject.layer == 9)
+        else if(other.gameObject.layer == 9) // finish
         {
             EndGame();
             GameManager.Instance.InputController.DriveInput = GameManager.Instance.InputController.SteerInput = 0f;
