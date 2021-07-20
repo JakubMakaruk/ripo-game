@@ -41,6 +41,9 @@ public class Player : MonoBehaviour
     private Color greenColor = new Color32(86, 229, 25, 255);
     private Color redColor = new Color32(229, 26, 30, 255);
 
+    private int minNumLayer = 10;
+    private int maxNumLayer = 21;
+
     private int currentAnswer; // 10 - U , 11 - Ó , 12 - RZ, 13 - Z, 14 - CI, 15 - Ć, 16 - Ś, 17 - SI, 18 - CH, 19 - H, 20 - Ź, 21 - ZI
     private int possibleAnswer1, possibleAnswer2;
     private string currentWord;
@@ -156,11 +159,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 10 || other.gameObject.layer == 11 || other.gameObject.layer == 12 || other.gameObject.layer == 13 || other.gameObject.layer == 14 || other.gameObject.layer == 15 || other.gameObject.layer == 16 || other.gameObject.layer == 17 || other.gameObject.layer == 18 || other.gameObject.layer == 19 || other.gameObject.layer == 20 || other.gameObject.layer == 21)
+        if (other.gameObject.layer >= minNumLayer && other.gameObject.layer <= maxNumLayer) // letter
         {
             StartCoroutine(OnCollisionWithObstacle(other));
         }
-        else if(other.gameObject.layer == 9)
+        else if(other.gameObject.layer == 9) // finish
         {
             EndGame();
             GameManager.Instance.InputController.DriveInput = GameManager.Instance.InputController.SteerInput = 0f;
