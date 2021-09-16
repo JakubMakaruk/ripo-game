@@ -10,7 +10,9 @@
  - wybór poziomu (U/Ó, RZ/Ż, Ć/CI, Ś/SI, CH/H, Ź/ZI)
  - sterowanie samochodem po torze wyścigowym
  - wybieranie brakującej w słowie litery poprzez przejechanie przez nią samochodem
- - wyświetlanie komunikatów o prawidłowości wyboru\n+- wyświetlenie ekranu końcowego z wynikami gracza (liczba poprawnych odpowiedzi, czas przejazdu toru, lista wyrazów na które udzielono złej odpowiedzi)
+ - wyświetlanie komunikatów o prawidłowości wyboru
+ - wyświetlenie ekranu końcowego z wynikami gracza po przejechaniu toru (liczba poprawnych odpowiedzi, czas przejazdu toru, lista wyrazów na które udzielono złej odpowiedzi)
+
  ## Użyte technologie
  <p>
   <img height="100" width="300" src="https://github.com/JakubMakaruk/ripo-game/blob/main/Images/technologies.png">
